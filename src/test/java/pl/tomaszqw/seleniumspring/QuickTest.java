@@ -2,7 +2,6 @@ package pl.tomaszqw.seleniumspring;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.springframework.boot.test.context.SpringBootTest;
 import pl.tomaszqw.seleniumspring.driver_setup.DriverFactory;
@@ -19,7 +18,7 @@ public class QuickTest {
         this.loginPage = new LoginPage(webDriver);
     }
 
-    @Test
+//    @Test
     public void successfulLogin() throws InterruptedException {
         loginPage.goToMainPage().fillLoginField("standard_user")
                 .fillPasswordField("secret_sauce")

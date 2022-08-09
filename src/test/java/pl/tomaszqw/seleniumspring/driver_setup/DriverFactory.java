@@ -13,7 +13,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 public class DriverFactory {
 
     public static WebDriver getWebDriver(String browser) {
-        WebDriver webDriver = null;
+        WebDriver webDriver;
         switch (browser) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
@@ -28,8 +28,9 @@ public class DriverFactory {
                 webDriver = new EdgeDriver(getEdgeOptions());
                 break;
             default:
-                break;
+                throw new RuntimeException("Unsupported webdriver: " + browser);
         }
+        webDriver.manage().window().maximize();
         return webDriver;
     }
 
