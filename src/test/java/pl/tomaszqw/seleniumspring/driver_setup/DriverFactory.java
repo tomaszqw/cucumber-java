@@ -10,23 +10,39 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class DriverFactory {
 
-    static WebDriver webDriver;
+    private static Map<String, WebDriver> webDrivers = new HashMap<>();
 
     public static WebDriver getWebDriver(String browser) {
+        WebDriver webDriver;
         switch (browser) {
             case "chrome":
-                WebDriverManager.chromedriver().setup();
-                webDriver = new ChromeDriver(getChromeOptions());
+                webDriver = webDrivers.get(browser);
+                if (webDriver == null) {
+                    WebDriverManager.chromedriver().setup();
+                    webDriver = new ChromeDriver(getChromeOptions());
+                    webDrivers.put(browser, webDriver);
+                }
                 break;
             case "firefox":
-                WebDriverManager.firefoxdriver().setup();
-                webDriver = new FirefoxDriver(getFirefoxOptions());
+                webDriver = webDrivers.get(browser);
+                if (webDriver == null) {
+                    WebDriverManager.firefoxdriver().setup();
+                    webDriver = new FirefoxDriver(getFirefoxOptions());
+                    webDrivers.put(browser, webDriver);
+                }
                 break;
             case "edge":
-                WebDriverManager.edgedriver().setup();
-                webDriver = new EdgeDriver(getEdgeOptions());
+                webDriver = webDrivers.get(browser);
+                if (webDriver == null) {
+                    WebDriverManager.edgedriver().setup();
+                    webDriver = new EdgeDriver(getEdgeOptions());
+                    webDrivers.put(browser, webDriver);
+                }
                 break;
             default:
                 throw new RuntimeException("Unsupported webdriver: " + browser);
@@ -36,8 +52,11 @@ public class DriverFactory {
     }
 
     public static void closeDriver() {
-        webDriver.close();
-        webDriver.quit();
+        for (String key : webDrivers.keySet()) {
+            webDrivers.get(key).close();
+            webDrivers.get(key).quit();
+        }
+        webDrivers.clear();
     }
 
     protected static ChromeOptions getChromeOptions() {

@@ -34,7 +34,7 @@ public class MyStepdefs {
 
     @Then("I should see main page")
     public void iShouldSeeMainPage() throws InterruptedException {
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         throw new PendingException();
     }
 }
