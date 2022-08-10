@@ -12,8 +12,9 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class DriverFactory {
 
+    static WebDriver webDriver;
+
     public static WebDriver getWebDriver(String browser) {
-        WebDriver webDriver;
         switch (browser) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
@@ -34,6 +35,10 @@ public class DriverFactory {
         return webDriver;
     }
 
+    public static void closeDriver() {
+        webDriver.close();
+        webDriver.quit();
+    }
 
     protected static ChromeOptions getChromeOptions() {
         ChromeOptions chromeOptions = new ChromeOptions();
