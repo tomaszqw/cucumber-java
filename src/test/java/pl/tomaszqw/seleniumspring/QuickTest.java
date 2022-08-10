@@ -8,7 +8,7 @@ import pl.tomaszqw.seleniumspring.pages.LoginPage;
 
 @SpringBootTest
 public class QuickTest {
-    LoginPage loginPage = new LoginPage(DriverFactory.getWebDriver("chrome"));
+    LoginPage loginPage = new LoginPage(DriverFactory.getWebDriver(System.getProperty("browser")));
 
     @Test
     public void successfulLogin() throws InterruptedException {
