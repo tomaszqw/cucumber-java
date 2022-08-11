@@ -1,6 +1,5 @@
 package pl.tomaszqw.seleniumspring.cucumber_steps;
 
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -35,6 +34,6 @@ public class MyStepdefs {
     @Then("I should see main page")
     public void iShouldSeeMainPage() throws InterruptedException {
         Thread.sleep(2000);
-        throw new PendingException();
+//        throw new PendingException();
     }
 }

@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class DriverFactory {
 
-    private static Map<String, WebDriver> webDrivers = new HashMap<>();
+    private static final Map<String, WebDriver> webDrivers = new HashMap<>();
 
     public static WebDriver getWebDriver(String browser) {
         WebDriver webDriver;
@@ -53,7 +53,6 @@ public class DriverFactory {
 
     public static void closeDriver() {
         for (String key : webDrivers.keySet()) {
-            webDrivers.get(key).close();
             webDrivers.get(key).quit();
         }
         webDrivers.clear();
