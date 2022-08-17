@@ -14,6 +14,7 @@
     <name>selenium-spring</name>
     <description>Demo project for spring boot, selenium, and cucumber</description>
     <properties>
+        <assertj.version>3.23.1</assertj.version>
         <java.version>11</java.version>
         <junit.jupiter.api.version>5.9.0</junit.jupiter.api.version>
         <cucumber.java.version>7.5.0</cucumber.java.version>
@@ -25,6 +26,12 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk15on</artifactId>
